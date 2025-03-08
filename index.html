@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc mừng 8/3</title>
+    <script src="https://cdn.jsdelivr.net/gh/mattdesl/greenscreen-js/dist/greenscreen.min.js"></script>
+    <style>
+       
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-transform: uppercase;
+            overflow: hidden;
+        }
+        .splash-screen {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3em;
+            cursor: pointer;
+            z-index: 10; 
+        }
+
+       
+        .main-content {
+            display: none; 
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            font-weight: bold;
+            animation: bgColorChange 0.3s infinite alternate;
+            text-align: center;
+            position: relative;
+        }
+
+        @keyframes bgColorChange {
+            0% { background: #ff4d4d; color: #fff; }
+            50% { background: #4d79ff; color: #ffeb3b; }
+            100% { background: #ffcc29; color: #4dff4d; }
+        }
+
+    
+        .gif-container {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            display: none; 
+        }
+
+        .gif-container img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="splash-screen" onclick="startWebsite()">
+        Ấn zo đây
+    </div>
+
+    <div class="main-content">
+        Em iu 8/3 zui zẻ <3333
+        <div class="gif-container">
+            <img src="mq.gif" alt="GIF chúc mừng">
+        </div>
+    </div>
+
+    <audio id="background-music" loop>
+        <source src="nhac.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        function startWebsite() {
+            document.querySelector('.splash-screen').style.display = 'none'; // Ẩn màn hình chờ
+            document.querySelector('.main-content').style.display = 'flex'; // Hiện trang chính
+            document.querySelector('.gif-container').style.display = 'block'; // Hiện GIF
+
+            let audio = document.getElementById("background-music");
+            audio.play().catch(error => console.log("Trình duyệt chặn phát nhạc tự động"));
+        }
+    </script>
+</body>
+</html>
