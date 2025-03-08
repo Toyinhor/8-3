@@ -47,8 +47,14 @@
             100% { background: #ffcc29; color: #4dff4d; }
         }
 
+        @keyframes rotateGif {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
     
         .gif-container {
+            animation: rotateGif 2s linear infinite; /* Xoay liên tục */
             position: absolute;
             top: 10%;
             left: 50%;
@@ -90,6 +96,38 @@
             let audio = document.getElementById("background-music");
             audio.play().catch(error => console.log("Trình duyệt chặn phát nhạc tự động"));
         }
+
+        document.addEventListener("DOMContentLoaded", function () {
+    let gif = document.querySelector(".gif-container");
+    let dx = 3, dy = 3; // Tốc độ di chuyển
+    let x = 100, y = 100; // Vị trí ban đầu
+
+    function moveGif() {
+        let screenWidth = window.innerWidth - gif.clientWidth;
+        let screenHeight = window.innerHeight - gif.clientHeight;
+
+        x += dx;
+        y += dy;
+
+        // Va chạm với cạnh trái/phải
+        if (x <= 0 || x >= screenWidth) {
+            dx = -dx; // Đảo hướng
+        }
+
+        // Va chạm với cạnh trên/dưới
+        if (y <= 0 || y >= screenHeight) {
+            dy = -dy; // Đảo hướng
+        }
+
+        // Cập nhật vị trí GIF
+        gif.style.left = x + "px";
+        gif.style.top = y + "px";
+
+        requestAnimationFrame(moveGif); // Lặp lại animation
+    }
+
+    moveGif(); // Bắt đầu di chuyển
+    });
     </script>
 </body>
 </html>
